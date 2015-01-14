@@ -28,4 +28,6 @@ $(document).ready(function() {
 		if($(this).is(":checked")) $("#ai-slider").slider("option", "disabled", false);
 		else $("#ai-slider").slider("option", "disabled", true);
 	});
+
+	$("#ai-check").attr("checked", true);
 });
