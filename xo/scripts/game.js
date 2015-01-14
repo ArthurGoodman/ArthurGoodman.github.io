@@ -115,7 +115,7 @@ var makeMove = function(x, y) {
 	var cell = cellAt(x, y);
 	var sign = currentSign();
 
-	cell.attr("src", (sign == X ? "x" : "o") + ".png");
+	cell.attr("src", "res/" + (sign == X ? "x" : "o") + ".png");
 	field[x][y] = sign;
 
 	checkForWin();
@@ -304,7 +304,7 @@ $(document).ready(function() {
 		html += "<tr>";
 
 		for(var x = 0; x < size; x++)
-			html += "<td><image class=\"cell\" src=\"blank.png\" x=\"" + x + "\" y=\"" + y + "\"/></td>";
+			html += "<td><image class=\"cell\" src=\"res/blank.png\" x=\"" + x + "\" y=\"" + y + "\"/></td>";
 
 		html += "</tr>";
 	}
