@@ -8,30 +8,28 @@ var size, minSize = 5, maxSize = 50, defaultSize = 10;
 var ai, minAi = 0, maxAi = 10, defaultAi = 4;
 
 // Change active player highlight.
-var togglePlayer = function() {
-	for(var i = 1; i <= 2; i++) {
-		if($("#player" + i).hasClass("active")) $("#player" + i).removeClass("active");
-		else $("#player" + i).addClass("active");
-	}
+function togglePlayer() {
+	for(var i = 1; i <= 2; i++)
+		$("#player" + i).toggleClass("active");
 }
 
 // Get current player's sign.
-var currentSign = function() {
+function currentSign() {
 	if($("#player1").hasClass("active")) return X;
 	else return O;
 }
 
 // Get JQuery cell object.
-var cellAt = function(x, y) {
+function cellAt(x, y) {
 	return $(".cell[x=" + x + "][y=" + y + "]");
 }
 
 // Get cell value.
-var at = function(x, y) {
+function at(x, y) {
 	return field[x][y];
 }
 
-var checkForWin = function() {
+function checkForWin() {
 	var draw = true;
 
 	// Iterate through the field and count complete lines' lengths.
@@ -111,7 +109,7 @@ var checkForWin = function() {
 	acceptMoves = true;
 }
 
-var makeMove = function(x, y) {
+function makeMove(x, y) {
 	var cell = cellAt(x, y);
 	var sign = currentSign();
 
@@ -122,7 +120,7 @@ var makeMove = function(x, y) {
 }
 
 // Some magic constants.
-var phi = function(l, s, k) {
+function phi(l, s, k) {
 	if(l >= 4) return 100;
 	if(s < 4) return 1;
 
@@ -134,16 +132,16 @@ var phi = function(l, s, k) {
 	}
 }
 
-var efficiency = function(x, y) {
+function efficiency(x, y) {
 	var v = currentSign(); // AI's sign.
 	var w = v == X ? O : X; // Player's sign.
 
 	// Skip impossible moves.
-    if(at(x, y) != B) return 0;
+	if(at(x, y) != B) return 0;
 
-    var m = 0, n = 0, l, s, k, cx, cy;
+	var m = 0, n = 0, l, s, k, cx, cy;
 
-    // Some magic here.
+	// Some magic here.
 	l = 0; cx = x; cy = y; while(++cx < size && at(cx, cy) == v) ++l;
 	cx = x; cy = y; while(--cx >= 0 && at(cx, cy) == v) ++l;
 	s = 0; cx = x; cy = y; while(++cx < size && at(cx, cy) != w) ++s;
@@ -212,8 +210,8 @@ var efficiency = function(x, y) {
 }
 
 // Random number within a range.
-var rand = function(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+function rand(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function aiMove() {
